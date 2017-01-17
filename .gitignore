@@ -1,0 +1,5 @@
+configure/O.*
+db
+dbd
+keysightN5171BApp/Db/O.*
+keysightN5171BApp/src/O.*
