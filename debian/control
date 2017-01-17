@@ -1,15 +1,15 @@
 Source: keysight-n5171b
-Section: unknown
+Section: libs
 Priority: optional
 Maintainer: Martin Konrad <konrad@frib.msu.edu>
-Build-Depends: debhelper (>=9)
-Standards-Version: 3.9.8
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://anonscm.debian.org/collab-maint/keysight-n5171b.git
-#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/keysight-n5171b.git
+Build-Depends: debhelper (>=9), epics-debhelper (>= 8.14~),
+               epics-dev
+Standards-Version: 3.9.6
+Vcs-Git: https://github.com/epicsdeb/keysight-n5171b.git
+Vcs-Browser: https://github.com/epicsdeb/keysight-n5171b.git
 
-Package: keysight-n5171b
+Package: keysight-n5171b-dev
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${epics:Depends}
+Description: EPICS support for Keysight N5171B
+ Stream Device support for Keysight N5171B EXG analog signal generator.
