@@ -1,0 +1,86 @@
+record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_CSET_OUT") {
+  field(DESC, "RF Output Frequency")
+  field(EGU,  "MHz")
+  field(PREC, "9")
+  field(FLNK, "_$(SYS)_$(SUB):$(DEV)_$(INST):FR_CSET_OUT")
+}
+
+record(calcout, "_$(SYS)_$(SUB):$(DEV)_$(INST):FR_CSET_OUT") {
+  field(DESC, "RF Output Frequency")
+  field(DTYP, "stream")
+  field(INPA, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_CSET_OUT MS NPP")
+  field(CALC, "1e6*A")
+  field(OUT,  "@keysightN5171B.proto write_float(FREQ) $(PORT)")
+  field(EGU,  "Hz")
+  field(PREC, "3")
+}
+
+record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_RSET_OUT") {
+  field(DESC, "RF Output Frequency")
+  field(DTYP, "stream")
+  field(INP, "@keysightN5171B.proto read_float(FREQ) $(PORT)")
+  field(LINR, "SLOPE")
+  field(ASLO, "1e-6")
+  field(AOFF, "0")
+  field(PREC, "9")
+  field(EGU, "MHz")
+  field(SCAN, "1 second")
+}
+
+record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_CSET_OUT") {
+  field(DESC, "RF Output Power")
+  field(DTYP, "stream")
+  field(FLNK, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_RSET_OUT")
+  field(OUT, "@keysightN5171B.proto write_float(POW) $(PORT)")
+  field(PREC, "2")
+  field(EGU, "dBm")
+}
+
+record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_RSET_OUT") {
+  field(DESC, "RF Output Power")
+  field(DTYP, "stream")
+  field(INP, "@keysightN5171B.proto read_float(POW) $(PORT)")
+  field(PREC, "2")
+  field(EGU, "dBm")
+  field(SCAN, "1 second")
+  field(FLNK, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_RSET_OUT")
+}
+
+record(calc, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_RSET_OUT") {
+  field(DESC, "RF Output Power")
+  field(INPA, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_RSET_OUT")
+  field(CALC, "10^(A/10)")
+  field(EGU,  "mW")
+  field(PREC, "3")
+}
+
+record(bi, "$(SYS)_$(SUB):$(DEV)_$(INST):EN_RSTS_OUT") {
+  field(DESC, "RF Output Enabled?")
+  field(DTYP, "stream")
+  field(INP,  "@keysightN5171B.proto read_int(OUTP) $(PORT)")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+  field(SCAN, "1 second")
+}
+
+record(bo, "$(SYS)_$(SUB):$(DEV)_$(INST):EN_CMD_OUT") {
+  field(DESC, "Enable RF Output")
+  field(DTYP, "stream")
+  field(OUT,  "@keysightN5171B.proto write_int(OUTP) $(PORT)")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+}
+
+record(stringin, "$(SYS)_$(SUB):$(DEV)_$(INST):ID_RD") {
+  field(DESC, "Serial no. of the signal generator")
+  field(DTYP, "stream")
+  field(INP,  "@keysightN5171B.proto read_serial $(PORT)")
+  field(SCAN, "10 second")
+}
+
+record(stringin, "$(SYS)_$(SUB):$(DEV)_$(INST):FVER_RD") {
+  field(DESC, "Firmware version")
+  field(DTYP, "stream")
+  field(INP,  "@keysightN5171B.proto read_fw_vers $(PORT)")
+  field(SCAN, "I/O Intr")
+}
