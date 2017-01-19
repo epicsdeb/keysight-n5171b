@@ -27,6 +27,21 @@ record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_RSET_OUT") {
   field(SCAN, "1 second")
 }
 
+record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
+  field(DESC, "RF Output Power")
+  field(EGU,  "mW")
+  field(PREC, "3")
+  field(FLNK, "_$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT")
+}
+
+record(calcout, "_$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
+  field(DESC, "Calculate RF Output Power in dBm")
+  field(OUT,  "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_CSET_OUT MS PP")
+  field(INPA, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT MS NPP")
+  field(CALC, "10*LOG(A)")
+  field(EGU,  "dBm")
+}
+
 record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_CSET_OUT") {
   field(DESC, "RF Output Power")
   field(DTYP, "stream")
@@ -48,7 +63,7 @@ record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_RSET_OUT") {
 
 record(calc, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_RSET_OUT") {
   field(DESC, "RF Output Power")
-  field(INPA, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_RSET_OUT")
+  field(INPA, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_RSET_OUT MS NPP")
   field(CALC, "10^(A/10)")
   field(EGU,  "mW")
   field(PREC, "3")
@@ -69,6 +84,46 @@ record(bo, "$(SYS)_$(SUB):$(DEV)_$(INST):EN_CMD_OUT") {
   field(OUT,  "@keysightN5171B.proto write_int(OUTP) $(PORT)")
   field(ZNAM, "Disabled")
   field(ONAM, "Enabled")
+}
+
+record(bo, "$(SYS)_$(SUB):$(DEV)_$(INST):EN_CMD_AMOD") {
+  field(DESC, "Enable amplitude modulation")
+  field(DTYP, "stream")
+  field(FLNK, "$(SYS)_$(SUB):$(DEV)_$(INST):EN_RSTS_AMOD")
+  field(OUT,  "@keysightN5171B.proto write_int(AM:STAT) $(PORT)")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+}
+
+record(bi, "$(SYS)_$(SUB):$(DEV)_$(INST):EN_RSTS_AMOD") {
+  field(DESC, "Amplitude modulation enabled?")
+  field(DTYP, "stream")
+  field(INP,  "@keysightN5171B.proto read_int(AM:STAT) $(PORT)")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  field(SCAN, "1 second")
+}
+
+record(mbbo, "$(SYS)_$(SUB):$(DEV)_$(INST):SRC_CMD_AMOD") {
+  field(DESC, "Source for amplitude modulation")
+  field(DTYP, "stream")
+  field(FLNK, "$(SYS)_$(SUB):$(DEV)_$(INST):SRC_RSTS_AMOD")
+  field(OUT,  "@keysightN5171B.proto write_ampl_mod_src $(PORT)")
+  field(ZRST, "Internal")
+  field(ONST, "Function Generator")
+  field(TWST, "External 1")
+  field(THST, "External 2")
+}
+
+record(mbbi, "$(SYS)_$(SUB):$(DEV)_$(INST):SRC_RSTS_AMOD") {
+  field(DESC, "Source for amplitude modulation?")
+  field(DTYP, "stream")
+  field(INP,  "@keysightN5171B.proto read_ampl_mod_src $(PORT)")
+  field(ZRST, "Internal")
+  field(ONST, "Function Generator")
+  field(TWST, "External 1")
+  field(THST, "External 2")
+  field(SCAN, "1 second")
 }
 
 record(stringin, "$(SYS)_$(SUB):$(DEV)_$(INST):ID_RD") {
