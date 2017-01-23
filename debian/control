@@ -10,6 +10,6 @@ Vcs-Browser: https://github.com/epicsdeb/keysight-n5171b.git
 
 Package: keysight-n5171b-dev
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${epics:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${epics:Depends}, epics-stream-dev
 Description: EPICS support for Keysight N5171B
  Stream Device support for Keysight N5171B EXG analog signal generator.
