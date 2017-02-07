@@ -27,12 +27,22 @@ record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_RSET_OUT") {
   field(SCAN, "1 second")
 }
 
+record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_CSET_OFST") {
+  field(DESC, "Amplitude Offset")
+  field(DTYP, "stream")
+  field(EGU,  "dB")
+  field(PREC, "3")
+  field(OUT, @keysightN5171B.proto write_string(FREQ:OFFS) $(PORT))
+}
+
 record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
   field(DESC, "RF Output Power")
   field(EGU,  "mW")
   field(PREC, "3")
   field(FLNK, "_$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT")
 }
+
+
 
 record(calcout, "_$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
   field(DESC, "Calculate RF Output Power in dBm")
