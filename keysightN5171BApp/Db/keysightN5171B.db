@@ -32,7 +32,7 @@ record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_CSET_OFST") {
   field(DTYP, "stream")
   field(EGU,  "dB")
   field(PREC, "3")
-  field(OUT, @keysightN5171B.proto write_string(FREQ:OFFS) $(PORT))
+  field(OUT, "@keysightN5171B.proto write_string(FREQ:OFFS) $(PORT)")
 }
 
 record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
@@ -41,8 +41,6 @@ record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
   field(PREC, "3")
   field(FLNK, "_$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT")
 }
-
-
 
 record(calcout, "_$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
   field(DESC, "Calculate RF Output Power in dBm")
