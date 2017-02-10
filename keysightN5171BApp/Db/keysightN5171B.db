@@ -32,15 +32,15 @@ record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):AMPL_CSET_OFST") {
   field(DTYP, "stream")
   field(EGU,  "dB")
   field(PREC, "3")
-  field(OUT, "@keysightN5171B.proto write_string(FREQ:OFFS) $(PORT)")
+  field(OUT, "@keysightN5171B.proto write_string(SENS:CORR:RPOW:OFFS) $(PORT)")
 }
 
-record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):AMPL_CSET_OFST") {
+record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):AMPL_RSET_OFST") {
   field(DESC, "Amplitude Offset")
   field(DTYP, "stream")
   field(EGU,  "dB")
   field(PREC, "3")
-  field(OUT, "@keysightN5171B.proto write_string(FREQ:OFFS) $(PORT)")
+  field(OUT, "@keysightN5171B.proto read_float(SENS:CORR:RPOW:OFFS) $(PORT)")
 }
 
 record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
