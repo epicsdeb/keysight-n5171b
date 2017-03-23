@@ -54,3 +54,12 @@ write_ampl_mod_src {
     out "AM:SOUR %{INT|FUNC|EXT|EXT2}";
     @init { read_ampl_mod_src; }
 }
+
+read_ampl_mod_depth {
+	out "AM:DEPT?";
+	@init{ read_float; }
+	
+write ampl_mod_depth {
+	out "AM:DEPT %d";
+	@init{ read_ampl_mod_depth; }
+}
