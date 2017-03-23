@@ -147,7 +147,7 @@ record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):AM_CMD_DEPT"){
   field(DESC, "Set AM depth")
   field(DTYP, "stream")
   field(OUT, "@keysightN5171B.proto write_ampl_mod_depth $(PORT)")
-  field(FLNK, "$(SYS)_$(SUB):$(DEV)_$(INST):SRC_RSTS_DEPT")
+  field(FLNK, "$(SYS)_$(SUB):$(DEV)_$(INST):AM_RSTS_DEPT")
 }
 
 record(stringin, "$(SYS)_$(SUB):$(DEV)_$(INST):ID_RD") {
