@@ -136,14 +136,14 @@ record(mbbi, "$(SYS)_$(SUB):$(DEV)_$(INST):SRC_RSTS_AMOD") {
   field(SCAN, "1 second")
 }
 
-record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):SRC_RSTS_DEPT"){
+record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):AM_RSTS_DEPT"){
   field(DESC, "Get AM depth")
   field(DTYP, "stream")
   field(INP, "@keysightN5171B.proto read_ampl_mod_depth $(PORT)")
   field(SCAN, "1 second")
 }
 
-record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):SRC_CMD_DEPT"){
+record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):AM_CMD_DEPT"){
   field(DESC, "Set AM depth")
   field(DTYP, "stream")
   field(OUT, "@keysightN5171B.proto write_ampl_mod_depth $(PORT)")
