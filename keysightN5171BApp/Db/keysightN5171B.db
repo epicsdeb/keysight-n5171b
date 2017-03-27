@@ -42,8 +42,6 @@ record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
   field(FLNK, "_$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT")
 }
 
-
-
 record(calcout, "_$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
   field(DESC, "Calculate RF Output Power in dBm")
   field(OUT,  "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_CSET_OUT MS PP")
