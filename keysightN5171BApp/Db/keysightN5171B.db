@@ -27,20 +27,12 @@ record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_RSET_OUT") {
   field(SCAN, "1 second")
 }
 
-record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):AMPL_CSET_OFST") {
+record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):FR_CSET_OFST") {
   field(DESC, "Amplitude Offset")
   field(DTYP, "stream")
   field(EGU,  "dB")
   field(PREC, "3")
-  field(OUT, "@keysightN5171B.proto write_string(SENS:CORR:RPOW:OFFS) $(PORT)")
-}
-
-record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):AMPL_RSET_OFST") {
-  field(DESC, "Amplitude Offset")
-  field(DTYP, "stream")
-  field(EGU,  "dB")
-  field(PREC, "3")
-  field(OUT, "@keysightN5171B.proto read_float(SENS:CORR:RPOW:OFFS) $(PORT)")
+  field(OUT, @keysightN5171B.proto write_string(FREQ:OFFS) $(PORT))
 }
 
 record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):POWR_CSET_OUT") {
@@ -140,6 +132,20 @@ record(mbbi, "$(SYS)_$(SUB):$(DEV)_$(INST):SRC_RSTS_AMOD") {
   field(TWST, "External 1")
   field(THST, "External 2")
   field(SCAN, "1 second")
+}
+
+record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):AM_RSTS_DEPT"){
+  field(DESC, "Get AM depth")
+  field(DTYP, "stream")
+  field(INP, "@keysightN5171B.proto read_ampl_mod_depth $(PORT)")
+  field(SCAN, "1 second")
+}
+
+record(ao, "$(SYS)_$(SUB):$(DEV)_$(INST):AM_CMD_DEPT"){
+  field(DESC, "Set AM depth")
+  field(DTYP, "stream")
+  field(OUT, "@keysightN5171B.proto write_ampl_mod_depth $(PORT)")
+  field(FLNK, "$(SYS)_$(SUB):$(DEV)_$(INST):AM_RSTS_DEPT")
 }
 
 record(stringin, "$(SYS)_$(SUB):$(DEV)_$(INST):ID_RD") {
