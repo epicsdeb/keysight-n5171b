@@ -93,7 +93,6 @@ record(ai, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_RSET_OFST") {
   field(PREC, "2")
   field(EGU, "dB")
   field(SCAN, "1 second")
-  field(FLNK, "$(SYS)_$(SUB):$(DEV)_$(INST):DBM_RSET_OUT")
 }
 
 record(bi, "$(SYS)_$(SUB):$(DEV)_$(INST):EN_RSTS_OUT") {
