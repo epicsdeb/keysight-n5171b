@@ -1,5 +1,5 @@
-keysight-n5171b (0.1.0) unstable; urgency=medium
+keysight-n5171b (1.0.0) unstable; urgency=medium
 
   * Initial Release.
 
- -- Martin Konrad <konrad@frib.msu.edu>  Tue, 17 Jan 2017 17:54:19 -0500
+ -- Martin Konrad <konrad@frib.msu.edu>  Mon, 15 May 2017 16:13:19 -0500
